@@ -4,9 +4,7 @@ import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 
 function filterMovies(movies, query) {
-  const filteredMovies = [...movies];
-
-  return filteredMovies.filter(
+  return movies.filter(
     movie =>
       movie.title.toLowerCase().includes(query.toLowerCase().trim()) ||
       movie.description.toLowerCase().includes(query.toLowerCase().trim()),
@@ -14,9 +12,8 @@ function filterMovies(movies, query) {
 }
 
 export const App = () => {
-  const copyOfMovies = [...moviesFromServer];
   const [query, setQuery] = useState('');
-  const visibleMovies = filterMovies(copyOfMovies, query);
+  const visibleMovies = filterMovies(moviesFromServer, query);
 
   return (
     <div className="page">
